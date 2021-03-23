@@ -105,4 +105,11 @@ public class FPSController : MonoBehaviour
             Cursor.visible = true;
         }
     }
+
+    public void PerformAssistedRotation(float cameraPitch,float bodyYaw)
+    {
+        this.cameraPitch += cameraPitch;
+        //playerCamera.transform.localEulerAngles = Vector3.right * cameraPitch;
+        transform.Rotate(transform.up * bodyYaw);
+    }
 }
