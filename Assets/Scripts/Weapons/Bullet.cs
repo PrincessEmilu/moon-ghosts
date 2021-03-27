@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls the bullet prefab. For now, it will delete itself after its maximum lifetime has passed.
+/// At some point the bullet prefab will want more information, such as how much damage it deals.
+/// It will also handle dealing damage to damageable objects (such as the player)
+/// </summary>
 public class Bullet : MonoBehaviour
 {
 

@@ -4,23 +4,59 @@ using UnityEngine;
 
 public class GunBehavior : MonoBehaviour
 {
+    /// <summary>
+    /// Does this gun fire while holding down the trigger?
+    /// </summary>
     [SerializeField] private bool isFullAuto;
+
+    /// <summary>
+    /// At what rate to the bullets shoot from this gone?
+    /// </summary>
     [SerializeField] private float fireRate;
+
+    /// <summary>
+    /// How long does it take to reload this gun?
+    /// </summary>
     [SerializeField] private float secondsToReload;
+
+    /// <summary>
+    /// The maximum number of bullets per clip
+    /// </summary>
     [SerializeField] private int clipCapacity;
+
+    /// <summary>
+    /// The vector3 the represents where the muzzle of the gun is, ie where bullets should spawn from
+    /// </summary>
     [SerializeField] private Vector3 muzzlePoint;
+
+    /// <summary>
+    /// The bullet prefab that this gun shoots
+    /// </summary>
     [SerializeField] private GameObject bulletPrefab;
     
+    /// <summary>
+    /// Is the player in the middle of a reload?
+    /// </summary>
     private bool isReloading;
+
+    /// <summary>
+    /// Is the gun on "cooldown" before the next bullet can be short?
+    /// </summary>
     private bool isFireable;
 
     private Clip gunClip;
 
+    /// <summary>
+    /// Timers track of the time since reload and the time since the last shot, respectively
+    /// </summary>
     private Timer reloadTimer;
     private Timer fireTimer;
 
     public bool IsFullAuto { get { return isFullAuto; } }
 
+    /// <summary>
+    /// Initilaize the gun on Awake
+    /// </summary>
     private void Awake()
     {
         isReloading = false;
@@ -31,6 +67,10 @@ public class GunBehavior : MonoBehaviour
 
         gunClip = new Clip(clipCapacity);
     }
+
+    /// <summary>
+    /// Update uses the timers to keep track of the gun's state for shooting and reloading
+    /// </summary>
     void Update()
     {
         if (isReloading)
@@ -56,6 +96,9 @@ public class GunBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawns a new bullet if not reloading, out of ammo, or on cooldown
+    /// </summary>
     public void ShootGun()
     {
         if (!isReloading && isFireable && !gunClip.IsEmpty)
@@ -68,6 +111,9 @@ public class GunBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the reload timer. When the timer is finished, the reload will happen.
+    /// </summary>
     public void Reload()
     {
         if (!isReloading)
@@ -77,11 +123,17 @@ public class GunBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Code that should happen when this gun is switched out
+    /// </summary>
     public void OnSwitch()
     {
         // TODO: Disable the gun, somehow
     }
 
+    /// <summary>
+    /// Handles spawning and applying velocity/targetting to the bullet
+    /// </summary>
     private void Shoot()
     {
         Debug.Log("Pew!");
