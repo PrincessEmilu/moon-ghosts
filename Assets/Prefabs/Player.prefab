@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 7536447289494165218}
   - component: {fileID: 7536447289494165219}
   - component: {fileID: 7536447289494165216}
+  - component: {fileID: 4521209160879684431}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -174,6 +175,19 @@ MonoBehaviour:
   gravity: -15
   movementSmoothDuration: 0.3
   lookSmoothDuration: 0.03
+--- !u!114 &4521209160879684431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7536447289494165221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2683e611622aa94459ac9f54208384fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGun: {fileID: 7227898372332272714}
 --- !u!1 &7536447290112414939
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9240f66ef1d4244f9a42dc1b6531d36, type: 3}
+--- !u!1 &7227898372332272714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 925614685859877382, guid: a9240f66ef1d4244f9a42dc1b6531d36, type: 3}
+  m_PrefabInstance: {fileID: 7536447289899691596}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7227898372332272710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 925614685859877386, guid: a9240f66ef1d4244f9a42dc1b6531d36, type: 3}
