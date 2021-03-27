@@ -8,6 +8,8 @@ public class GunBehavior : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private float secondsToReload;
     [SerializeField] private int clipCapacity;
+    [SerializeField] private Vector3 muzzlePoint;
+    [SerializeField] private GameObject bulletPrefab;
     
     private bool isReloading;
     private bool isFireable;
@@ -68,9 +70,9 @@ public class GunBehavior : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("Reloading, cover me!");
         if (!isReloading)
         {
+            Debug.Log("Reloading, cover me!");
             isReloading = true;
         }
     }
@@ -87,5 +89,6 @@ public class GunBehavior : MonoBehaviour
         gunClip.UseBullet();
 
         // TODO: Spawn a bullet, play animations, etc etc.
+        Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
     }
 }

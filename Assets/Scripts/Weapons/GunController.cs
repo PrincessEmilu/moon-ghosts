@@ -5,6 +5,7 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private GameObject currentGun;
+
     private GunBehavior gunScript;
 
     private void Start()
