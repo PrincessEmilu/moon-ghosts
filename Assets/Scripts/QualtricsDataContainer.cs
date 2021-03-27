@@ -24,8 +24,7 @@ public class QualtricsDataContainer : MonoBehaviour
         accessibilityFeatures.Add("AccessibilityFeatureY", false);
 
         // Add new weapons here and also on the qualtrics survey under Survey Flow 
-        // Time will be stored in minutes, but added in seconds
-        weaponUseTimes.Add("WeaponX", 0);
+        weaponUseTimes.Add("WeaponX", 5.6165132f);
         weaponUseTimes.Add("WeaponY", 0);
     }
 
@@ -50,13 +49,12 @@ public class QualtricsDataContainer : MonoBehaviour
     /// Adds a value to the current use time for a weapon
     /// </summary>
     /// <param name="weaponName">The name of the weapon</param>
-    /// <param name="secondsToAdd">The time to add to the weapon's use time value in seconds</param>
-    public void AddWeaponUseTime(string weaponName, float secondsToAdd)
+    /// <param name="timeToAdd">The time to add to the weapon's use time value</param>
+    public void AddWeaponUseTime(string weaponName, float timeToAdd)
     {
         if (weaponUseTimes.ContainsKey(weaponName))
         {
-            float minutesToAdd = secondsToAdd / 60;
-            weaponUseTimes[weaponName] += minutesToAdd;
+            weaponUseTimes[weaponName] += timeToAdd;
         }
         else
         {
