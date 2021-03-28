@@ -151,15 +151,18 @@ public class FPSController : MonoBehaviour
         {
 
             Vector3 targetDir = (collider.transform.position - playerCamTransform.position).normalized;
+            
             float angle = Vector3.Angle(playerCamTransform.forward, targetDir);
+           
 
             if(Mathf.Abs(angle) < fovAngle)
             {
-                Debug.Log(collider.transform.name + ":" + angle);
+                
                 float distanceToTarget = Vector3.Distance(playerCamTransform.position, collider.transform.position);
+
                 if (!Physics.Raycast(playerCamTransform.position, targetDir, distanceToTarget, obstacleLayer))
                 {
-                    Debug.Log(collider.transform.name + ":" + distanceToTarget);
+                   
                     unobstructedColliders.Add(collider);
                    
                 }
@@ -170,7 +173,7 @@ public class FPSController : MonoBehaviour
         {
             unobstructedColliders = unobstructedColliders.OrderBy(x => Vector3.Distance(x.transform.position, playerCamTransform.position)).ToList();
             Collider closestCollider = unobstructedColliders[0];
-            Debug.Log(closestCollider.transform.name);
+           
             return closestCollider.transform;
         }
         else
@@ -188,39 +191,19 @@ public class FPSController : MonoBehaviour
         if (target)
         {
             Vector3 targetDirection = (target.position - playerCamTransform.position).normalized;
+           
+            Quaternion lookRoation = Quaternion.LookRotation(targetDirection,playerCamTransform.up);
+           
+            float targetCameraPitch = lookRoation.eulerAngles.x;
+            float targetYaw = lookRoation.eulerAngles.y;
 
-            Quaternion q = Quaternion.FromToRotation(playerCamTransform.forward, targetDirection);
+            targetCameraPitch = (targetCameraPitch > 180) ? targetCameraPitch - 360 : targetCameraPitch;
+            targetYaw = (targetYaw > 180) ? targetYaw - 360 : targetYaw;
 
-            //float angle = q.eulerAngles.x;
-
-            //angle = (angle > 180) ? angle - 360 : angle;
-
-            //transform.Rotate(transform.up * q.eulerAngles.y);
-
-            //cameraPitch = angle;
-
-            //playerCamera.transform.localEulerAngles = new Vector3(angle, playerCamera.transform.localEulerAngles.y, playerCamera.transform.localEulerAngles.z);
-
-            //Debug.Log("camera angle:" + playerCamera.transform.localEulerAngles.x);
-            //Debug.Log("calculated angle:"+angle);
-
-            //Quaternion q = Quaternion.LookRotation(targetDirection, playerCamera.transform.up);
-            //transform.Rotate(transform.up * q.eulerAngles.y);
-            //playerCamera.transform.rotation = Quaternion.Euler(q.x, playerCamera.transform.rotation.y, playerCamera.transform.rotation.z);
-
-            float xAngle = q.eulerAngles.x;
-            xAngle = (xAngle > 180) ? xAngle - 360 : xAngle;
-
-            float yAngle = q.eulerAngles.y;
-            yAngle = (yAngle > 180) ? yAngle - 360 : yAngle;
-
-
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + yAngle, transform.localEulerAngles.z);
-            playerCamera.transform.localEulerAngles = new Vector3(playerCamTransform.localEulerAngles.x + xAngle, playerCamTransform.localEulerAngles.y, playerCamTransform.localEulerAngles.z);
-
-            Debug.Log("xAngle:" + xAngle);
-
-            cameraPitch += xAngle;
+            playerCamTransform.localEulerAngles = new Vector3(targetCameraPitch, playerCamTransform.localEulerAngles.y, playerCamTransform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, targetYaw, transform.localEulerAngles.z);
+           
+            cameraPitch = targetCameraPitch;
         }
         controlState = ControlState.fps;
 
