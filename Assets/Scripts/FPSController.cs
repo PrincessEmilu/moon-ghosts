@@ -64,6 +64,7 @@ public class FPSController : MonoBehaviour
         //toDo Decouple Cursor locking from this controller script. 
         ProcessUnlockCursorInput();
 
+        //Press Right mouse click to trigger aim assist mechanic.
         switch (controlState)
         {
             case ControlState.fps:
@@ -76,7 +77,7 @@ public class FPSController : MonoBehaviour
                 break;
         }
 
-       
+
     }
 
     private void ProcessNormalControl()
@@ -141,36 +142,40 @@ public class FPSController : MonoBehaviour
         }
     }
 
-   public Transform GetClosestUnobstructedTarget()
+    public Transform GetClosestUnobstructedTarget()
     {
         List<Collider> unobstructedColliders = new List<Collider>();
 
         Collider[] colliders = Physics.OverlapSphere(playerCamTransform.position, detectionRadius, targetLayer);
 
-        foreach(Collider collider in colliders)
+        foreach (Collider collider in colliders)
         {
 
             Vector3 targetDir = (collider.transform.position - playerCamTransform.position).normalized;
+
             float angle = Vector3.Angle(playerCamTransform.forward, targetDir);
 
-            if(Mathf.Abs(angle) < fovAngle)
+            if (Mathf.Abs(angle) < fovAngle)
             {
-                Debug.Log(collider.transform.name + ":" + angle);
+
                 float distanceToTarget = Vector3.Distance(playerCamTransform.position, collider.transform.position);
+
                 if (!Physics.Raycast(playerCamTransform.position, targetDir, distanceToTarget, obstacleLayer))
                 {
-                    Debug.Log(collider.transform.name + ":" + distanceToTarget);
+                    //This raycast determines if something is blocking our desired target or not.
                     unobstructedColliders.Add(collider);
-                   
                 }
-            }  
-            
+            }
+
         }
         if (unobstructedColliders.Count > 0)
         {
+            //sorting our targest by distance.
             unobstructedColliders = unobstructedColliders.OrderBy(x => Vector3.Distance(x.transform.position, playerCamTransform.position)).ToList();
+
+            //This is the nearest target.
             Collider closestCollider = unobstructedColliders[0];
-            Debug.Log(closestCollider.transform.name);
+
             return closestCollider.transform;
         }
         else
@@ -178,10 +183,9 @@ public class FPSController : MonoBehaviour
             Debug.Log("Nothing to target");
             return null;
         }
-           
+
     }
 
-    //todo Fix bug here
     public void ActivateAimAssist()
     {
         Transform target = GetClosestUnobstructedTarget();
@@ -189,38 +193,18 @@ public class FPSController : MonoBehaviour
         {
             Vector3 targetDirection = (target.position - playerCamTransform.position).normalized;
 
-            Quaternion q = Quaternion.FromToRotation(playerCamTransform.forward, targetDirection);
+            Quaternion lookRoation = Quaternion.LookRotation(targetDirection, playerCamTransform.up);
 
-            //float angle = q.eulerAngles.x;
+            float targetCameraPitch = lookRoation.eulerAngles.x;
+            float targetYaw = lookRoation.eulerAngles.y;
 
-            //angle = (angle > 180) ? angle - 360 : angle;
+            targetCameraPitch = (targetCameraPitch > 180) ? targetCameraPitch - 360 : targetCameraPitch;
+            targetYaw = (targetYaw > 180) ? targetYaw - 360 : targetYaw;
 
-            //transform.Rotate(transform.up * q.eulerAngles.y);
+            playerCamTransform.localEulerAngles = new Vector3(targetCameraPitch, playerCamTransform.localEulerAngles.y, playerCamTransform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, targetYaw, transform.localEulerAngles.z);
 
-            //cameraPitch = angle;
-
-            //playerCamera.transform.localEulerAngles = new Vector3(angle, playerCamera.transform.localEulerAngles.y, playerCamera.transform.localEulerAngles.z);
-
-            //Debug.Log("camera angle:" + playerCamera.transform.localEulerAngles.x);
-            //Debug.Log("calculated angle:"+angle);
-
-            //Quaternion q = Quaternion.LookRotation(targetDirection, playerCamera.transform.up);
-            //transform.Rotate(transform.up * q.eulerAngles.y);
-            //playerCamera.transform.rotation = Quaternion.Euler(q.x, playerCamera.transform.rotation.y, playerCamera.transform.rotation.z);
-
-            float xAngle = q.eulerAngles.x;
-            xAngle = (xAngle > 180) ? xAngle - 360 : xAngle;
-
-            float yAngle = q.eulerAngles.y;
-            yAngle = (yAngle > 180) ? yAngle - 360 : yAngle;
-
-
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + yAngle, transform.localEulerAngles.z);
-            playerCamera.transform.localEulerAngles = new Vector3(playerCamTransform.localEulerAngles.x + xAngle, playerCamTransform.localEulerAngles.y, playerCamTransform.localEulerAngles.z);
-
-            Debug.Log("xAngle:" + xAngle);
-
-            cameraPitch += xAngle;
+            cameraPitch = targetCameraPitch;
         }
         controlState = ControlState.fps;
 
