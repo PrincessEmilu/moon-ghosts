@@ -64,6 +64,7 @@ public class FPSController : MonoBehaviour
         //toDo Decouple Cursor locking from this controller script. 
         ProcessUnlockCursorInput();
 
+        //Press Right mouse click to trigger aim assist mechanic.
         switch (controlState)
         {
             case ControlState.fps:
@@ -76,7 +77,7 @@ public class FPSController : MonoBehaviour
                 break;
         }
 
-       
+
     }
 
     private void ProcessNormalControl()
@@ -141,39 +142,40 @@ public class FPSController : MonoBehaviour
         }
     }
 
-   public Transform GetClosestUnobstructedTarget()
+    public Transform GetClosestUnobstructedTarget()
     {
         List<Collider> unobstructedColliders = new List<Collider>();
 
         Collider[] colliders = Physics.OverlapSphere(playerCamTransform.position, detectionRadius, targetLayer);
 
-        foreach(Collider collider in colliders)
+        foreach (Collider collider in colliders)
         {
 
             Vector3 targetDir = (collider.transform.position - playerCamTransform.position).normalized;
-            
-            float angle = Vector3.Angle(playerCamTransform.forward, targetDir);
-           
 
-            if(Mathf.Abs(angle) < fovAngle)
+            float angle = Vector3.Angle(playerCamTransform.forward, targetDir);
+
+            if (Mathf.Abs(angle) < fovAngle)
             {
-                
+
                 float distanceToTarget = Vector3.Distance(playerCamTransform.position, collider.transform.position);
 
                 if (!Physics.Raycast(playerCamTransform.position, targetDir, distanceToTarget, obstacleLayer))
                 {
-                   
+                    //This raycast determines if something is blocking our desired target or not.
                     unobstructedColliders.Add(collider);
-                   
                 }
-            }  
-            
+            }
+
         }
         if (unobstructedColliders.Count > 0)
         {
+            //sorting our targest by distance.
             unobstructedColliders = unobstructedColliders.OrderBy(x => Vector3.Distance(x.transform.position, playerCamTransform.position)).ToList();
+
+            //This is the nearest target.
             Collider closestCollider = unobstructedColliders[0];
-           
+
             return closestCollider.transform;
         }
         else
@@ -181,19 +183,18 @@ public class FPSController : MonoBehaviour
             Debug.Log("Nothing to target");
             return null;
         }
-           
+
     }
 
-    //todo Fix bug here
     public void ActivateAimAssist()
     {
         Transform target = GetClosestUnobstructedTarget();
         if (target)
         {
             Vector3 targetDirection = (target.position - playerCamTransform.position).normalized;
-           
-            Quaternion lookRoation = Quaternion.LookRotation(targetDirection,playerCamTransform.up);
-           
+
+            Quaternion lookRoation = Quaternion.LookRotation(targetDirection, playerCamTransform.up);
+
             float targetCameraPitch = lookRoation.eulerAngles.x;
             float targetYaw = lookRoation.eulerAngles.y;
 
@@ -202,7 +203,7 @@ public class FPSController : MonoBehaviour
 
             playerCamTransform.localEulerAngles = new Vector3(targetCameraPitch, playerCamTransform.localEulerAngles.y, playerCamTransform.localEulerAngles.z);
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, targetYaw, transform.localEulerAngles.z);
-           
+
             cameraPitch = targetCameraPitch;
         }
         controlState = ControlState.fps;
