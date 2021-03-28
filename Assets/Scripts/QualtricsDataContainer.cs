@@ -20,13 +20,13 @@ public class QualtricsDataContainer : MonoBehaviour
     void Start()
     {
         // Add new features here and also on the qualtrics survey under Survey Flow 
-        accessibilityFeatures.Add("AccessibilityFeatureX", false);
-        accessibilityFeatures.Add("AccessibilityFeatureY", false);
+        accessibilityFeatures.Add("AimAssist", false);
+        //accessibilityFeatures.Add("AccessibilityFeatureY", false);
 
         // Add new weapons here and also on the qualtrics survey under Survey Flow 
         // Time will be stored in minutes, but added in seconds
-        weaponUseTimes.Add("WeaponX", 0);
-        weaponUseTimes.Add("WeaponY", 0);
+        weaponUseTimes.Add("BallLauncher", 0);
+        weaponUseTimes.Add("DiscPistol", 0);
     }
 
     /// <summary>
