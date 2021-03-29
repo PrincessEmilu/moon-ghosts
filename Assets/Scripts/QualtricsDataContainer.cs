@@ -14,6 +14,7 @@ public class QualtricsDataContainer : MonoBehaviour
     #region Fields
     private Dictionary<string, bool> accessibilityFeatures = new Dictionary<string, bool>();
     private Dictionary<string, float> weaponUseTimes = new Dictionary<string, float>();
+    private Dictionary<string, int> weaponShotsFired = new Dictionary<string, int>();
     #endregion
 
     #region Methods
@@ -27,6 +28,10 @@ public class QualtricsDataContainer : MonoBehaviour
         // Time will be stored in minutes, but added in seconds
         weaponUseTimes.Add("BallLauncher", 0);
         weaponUseTimes.Add("DiscPistol", 0);
+
+        // Add new weapons here and also on the qualtrics survey under Survey Flow 
+        weaponShotsFired.Add("BallLauncher", 0);
+        weaponShotsFired.Add("DiscPistol", 0); 
     }
 
     /// <summary>
@@ -64,6 +69,18 @@ public class QualtricsDataContainer : MonoBehaviour
         }
     }
 
+    public void AddWeaponShotFired(string weaponName)
+    {
+        if (weaponShotsFired.ContainsKey(weaponName))
+        {
+            weaponShotsFired[weaponName]++;
+        }
+        else
+        {
+            Debug.Log("Weapon name not found. Add it in QualtricsDataContainer.Start()");
+        }
+    }
+
     /// <summary>
     /// Send relevant data to the qualtrics survey
     /// Intended to be used only at the end of a test
@@ -80,6 +97,11 @@ public class QualtricsDataContainer : MonoBehaviour
         foreach(KeyValuePair<string, float> weapon in weaponUseTimes)
         {
             queryString += $"{weapon.Key}UseTime={Math.Round(weapon.Value, 2)}&";
+        }
+
+        foreach (KeyValuePair<string, float> weapon in weaponUseTimes)
+        {
+            queryString += $"{weapon.Key}ShotsFired={Math.Round(weapon.Value, 2)}&";
         }
 
         queryString = queryString.Remove(queryString.Length - 1, 1);
