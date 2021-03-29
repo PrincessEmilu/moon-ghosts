@@ -175,6 +175,14 @@ MonoBehaviour:
   gravity: -15
   movementSmoothDuration: 0.3
   lookSmoothDuration: 0.03
+  detectionRadius: 20
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  fovAngle: 40
 --- !u!114 &4521209160879684431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +348,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BallLauncher
       objectReference: {fileID: 0}
+    - target: {fileID: 6024731156044777994, guid: f3e9c8d3414522d4488d1740e7286a04, type: 3}
+      propertyPath: playerCamTransform
+      value: 
+      objectReference: {fileID: 7536447290112414936}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3e9c8d3414522d4488d1740e7286a04, type: 3}
 --- !u!1 &514546355092138325 stripped
