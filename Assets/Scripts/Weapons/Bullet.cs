@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
 
     [SerializeField] float baseDamage;
     [SerializeField] float maximumLifetime;
+    [SerializeField] float projectileSpeed = 45f;
 
     private Timer cullTimer;
 
@@ -29,7 +30,8 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        transform.position += transform.forward * Time.deltaTime * 45f;
+        //moving the bullet forward.
+        transform.position += transform.forward * Time.deltaTime * projectileSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
