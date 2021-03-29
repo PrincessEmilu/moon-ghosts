@@ -9,7 +9,6 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
-
     [SerializeField] float baseDamage;
     [SerializeField] float maximumLifetime;
     [SerializeField] float projectileSpeed = 45f;
@@ -28,7 +27,7 @@ public class Bullet : MonoBehaviour
         cullTimer.Tick();
         if (cullTimer.CheckTime())
         {
-            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(gameObject);
         }
         //moving the bullet forward.
         transform.position += transform.forward * Time.deltaTime * projectileSpeed;

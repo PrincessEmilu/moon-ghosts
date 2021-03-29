@@ -218,6 +218,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &321346533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 514546355092138325, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+  m_PrefabInstance: {fileID: 7536447288373484934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &396219565
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +488,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470085372}
   m_CullTransparentMesh: 1
+--- !u!4 &549339318 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7536447290112414936, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+  m_PrefabInstance: {fileID: 7536447288373484934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &672439160
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +872,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &883412024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4245060075458049033, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+  m_PrefabInstance: {fileID: 7536447288373484934}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &960028532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1525,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1660492909744247569, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+      propertyPath: playerCamTransform
+      value: 
+      objectReference: {fileID: 549339318}
+    - target: {fileID: 4521209160879684431, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+      propertyPath: gunLoadout.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521209160879684431, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+      propertyPath: gunLoadout.Array.data[0]
+      value: 
+      objectReference: {fileID: 321346533}
+    - target: {fileID: 4521209160879684431, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+      propertyPath: gunLoadout.Array.data[1]
+      value: 
+      objectReference: {fileID: 883412024}
     - target: {fileID: 7536447289494165216, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
       propertyPath: fovAngle
       value: 25
