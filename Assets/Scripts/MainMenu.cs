@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
     //Main Menu
 
     const int numOfLevels = 5;
-    public bool AimAssistON = true;
+    public static bool AimAssistON = true;
 
     public void PlayGame()
     {
