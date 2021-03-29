@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2811790485924602320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.2242546, y: 9.355665, z: 5.109356}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7945423491048098924}
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFullAuto: 0
-  fireRate: 0.9
+  fireRate: 0.75
   secondsToReload: 1
   clipCapacity: 24
-  muzzlePoint: {x: 0.78, y: -0.14, z: -0.64}
-  bulletPrefab: {fileID: 8109586339973629377, guid: 5ff552d42e358e742876a7ac35e6331a, type: 3}
+  muzzlePoint: {x: -0.23, y: 0.12, z: -0.95}
+  bulletPrefab: {fileID: 160202076827721023, guid: 2debac6f77dcf0b46bb13b7958c5a403, type: 3}
   playerCamTransform: {fileID: 0}
 --- !u!1001 &7622740310850415495
 PrefabInstance:
@@ -102,6 +102,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7031094254399945830, guid: 925c7c205e0898544a2efffc36d38a7b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1784159fe049934f857e0c9fc9ecb4b, type: 2}
+    - target: {fileID: -6576461510049830834, guid: 925c7c205e0898544a2efffc36d38a7b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f355355ed9f4ba48b0786d29e1e6afc, type: 2}
+    - target: {fileID: -5898008660381507705, guid: 925c7c205e0898544a2efffc36d38a7b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4692df70df236d45b22de324acb1f0d, type: 2}
+    - target: {fileID: -1492579102578580375, guid: 925c7c205e0898544a2efffc36d38a7b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4692df70df236d45b22de324acb1f0d, type: 2}
+    - target: {fileID: -1139902155089558194, guid: 925c7c205e0898544a2efffc36d38a7b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 711aec0443dc3584a9bf022000986954, type: 2}
     - target: {fileID: 919132149155446097, guid: 925c7c205e0898544a2efffc36d38a7b, type: 3}
       propertyPath: m_Name
       value: DiscPistol

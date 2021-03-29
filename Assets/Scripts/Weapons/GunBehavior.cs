@@ -80,7 +80,7 @@ public class GunBehavior : MonoBehaviour
             reloadTimer.Tick();
             if (reloadTimer.CheckTime())
             {
-                Debug.Log("Reload finished");
+                transform.Rotate(new Vector3(-45, 0, 0));
                 gunClip.RefillClip();
                 isReloading = false;
                 reloadTimer.Reset();
@@ -107,10 +107,6 @@ public class GunBehavior : MonoBehaviour
         {
             Shoot();
         }
-        else
-        {
-            Debug.Log("*click*");
-        }
     }
 
     /// <summary>
@@ -120,7 +116,7 @@ public class GunBehavior : MonoBehaviour
     {
         if (!isReloading)
         {
-            Debug.Log("Reloading, cover me!");
+            transform.Rotate(new Vector3(45, 0, 0));
             isReloading = true;
         }
     }
