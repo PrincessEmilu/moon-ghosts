@@ -69,6 +69,10 @@ public class QualtricsDataContainer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds 1 shot to a weapon's shots fired value
+    /// </summary>
+    /// <param name="weaponName">The name of the weapon</param>
     public void AddWeaponShotFired(string weaponName)
     {
         if (weaponShotsFired.ContainsKey(weaponName))
