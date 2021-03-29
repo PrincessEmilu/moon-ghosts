@@ -114,19 +114,21 @@ public static class QualtricsDataContainer// : MonoBehaviour
 
         queryString = queryString.Remove(queryString.Length - 1, 1);
 
-        UnityWebRequest www = UnityWebRequest.Get(queryString);
+        Application.OpenURL("surveyURL" + queryString);
 
-        www.SendWebRequest();
+        //UnityWebRequest www = UnityWebRequest.Get(queryString);
 
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            Debug.Log(www.downloadHandler.text);
-            Debug.Log("Data Sent Successfully");
-        }
+        //www.SendWebRequest();
+
+        //if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        //{
+        //    Debug.Log(www.error);
+        //}
+        //else
+        //{
+        //    Debug.Log(www.downloadHandler.text);
+        //    Debug.Log("Data Sent Successfully");
+        //}
     }
 
     /// <summary>
