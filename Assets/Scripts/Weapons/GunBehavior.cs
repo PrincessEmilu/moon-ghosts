@@ -54,6 +54,8 @@ public class GunBehavior : MonoBehaviour
 
     public bool IsFullAuto { get { return isFullAuto; } }
 
+    [SerializeField] Transform playerCamTransform = null;
+
     /// <summary>
     /// Initilaize the gun on Awake
     /// </summary>
@@ -141,6 +143,6 @@ public class GunBehavior : MonoBehaviour
         gunClip.UseBullet();
 
         // TODO: Spawn a bullet, play animations, etc etc.
-        Instantiate(bulletPrefab, gameObject.transform.position, Quaternion.identity);
+        Instantiate(bulletPrefab, gameObject.transform.position + transform.TransformDirection(muzzlePoint), playerCamTransform.rotation);
     }
 }

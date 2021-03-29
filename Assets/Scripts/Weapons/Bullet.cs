@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        transform.position += transform.forward * Time.deltaTime * 45f;
     }
 
     private void OnCollisionEnter(Collision collision)
