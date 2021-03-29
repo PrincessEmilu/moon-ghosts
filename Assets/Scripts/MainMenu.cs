@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
     //Main Menu
 
     const int numOfLevels = 5;
+    public bool AimAssistON = true;
+
     public void PlayGame()
     {
         if (SceneManager.GetActiveScene().buildIndex <= (numOfLevels-1))
@@ -19,6 +21,12 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(0);
         }
         
+    }
+
+    //Options Menu
+    public void ToggleAimAssist()
+    {
+        AimAssistON = !AimAssistON;
     }
 
     //quits the game
