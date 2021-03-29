@@ -137,4 +137,9 @@ public class GunBehavior : MonoBehaviour
         // TODO: Spawn a bullet, play animations, etc etc.
         Instantiate(bulletPrefab, gameObject.transform.position + transform.TransformDirection(muzzlePoint), playerCamTransform.rotation);
     }
+
+    public void OnGunSwitch()
+    {
+        gameObject.SetActive(!gameObject.activeInHierarchy);
+    }
 }

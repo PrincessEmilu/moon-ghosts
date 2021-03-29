@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68cc18e19d15ad14b9ded0343ac7a7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 0
-  maximumLifetime: 2
+  baseDamage: 15
+  maximumLifetime: 20
+  projectileSpeed: 30
 --- !u!54 &1887813030717740897
 Rigidbody:
   m_ObjectHideFlags: 0

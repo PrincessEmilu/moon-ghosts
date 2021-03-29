@@ -13,20 +13,20 @@ public class GunController : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject[] gunLoadout;
 
-    public GameObject CurrentGun
+    public int CurrentGunIndex
     {
         set
         {
-            currentGun = value;
-            gunBehavior = currentGun.GetComponent<GunBehavior>();
+            currentGunIndex = value;
+            gunBehavior = gunLoadout[currentGunIndex].GetComponent<GunBehavior>();
         }
         get
         {
-            return currentGun;
+            return currentGunIndex;
         }
     }
 
-    private GameObject currentGun;
+    private int currentGunIndex;
 
     /// <summary>
     /// Access to the gunbehavior attached to the current gun.
@@ -38,7 +38,7 @@ public class GunController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        CurrentGun = gunLoadout[0];
+        CurrentGunIndex = 0;
 
         if (gunLoadout.Length <= 1)
             return;
@@ -59,12 +59,9 @@ public class GunController : MonoBehaviour
     void Update()
     {
         // Fully-automatic guns are fired when the mouse is held down
-        if (gunBehavior.IsFullAuto)
+        if (gunBehavior.IsFullAuto && Input.GetMouseButton(0))
         {
-            if (Input.GetMouseButton(0))
-            {
-                gunBehavior.ShootGun();
-            }
+            gunBehavior.ShootGun();
         }
         // Semi-auto and bolt-action guns are shot on button press only
         else if (Input.GetMouseButtonDown(0))
@@ -79,7 +76,18 @@ public class GunController : MonoBehaviour
         // Switch Weapons
         else if (Input.mouseScrollDelta.magnitude != 0)
         {
-            Debug.Log("Swap gun");
+            int newIndex = CurrentGunIndex + 1;
+            if (newIndex == gunLoadout.Length)
+            {
+                newIndex = 0;
+            }
+
+            CurrentGunIndex = newIndex;
+
+            for (int i = 0; i < gunLoadout.Length; i++)
+            {
+                gunLoadout[i].GetComponent<GunBehavior>().OnGunSwitch();
+            }
         }
     }
 }

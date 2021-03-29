@@ -373,12 +373,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa54e87c37877ee43b533f56dfca4a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFullAuto: 0
-  fireRate: 0.001
+  isFullAuto: 1
+  fireRate: 0.25
   secondsToReload: 3
-  clipCapacity: 8
+  clipCapacity: 12
   muzzlePoint: {x: 0.044, y: -0.03, z: -2.33}
   bulletPrefab: {fileID: 154025074267500344, guid: 5d099bf5e461d96469c2a8050db0cf21, type: 3}
+  playerCamTransform: {fileID: 0}
 --- !u!1 &6175815179504938529
 GameObject:
   m_ObjectHideFlags: 0

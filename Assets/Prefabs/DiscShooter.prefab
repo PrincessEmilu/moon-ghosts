@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6276436257167788390}
+  - component: {fileID: 785674355602949832}
   m_Layer: 0
   m_Name: DiscShooter
   m_TagString: Untagged
@@ -31,6 +32,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &785674355602949832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2811790485924602320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa54e87c37877ee43b533f56dfca4a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFullAuto: 0
+  fireRate: 0.9
+  secondsToReload: 1
+  clipCapacity: 24
+  muzzlePoint: {x: 0.78, y: -0.14, z: -0.64}
+  bulletPrefab: {fileID: 8109586339973629377, guid: 5ff552d42e358e742876a7ac35e6331a, type: 3}
+  playerCamTransform: {fileID: 0}
 --- !u!1001 &7622740310850415495
 PrefabInstance:
   m_ObjectHideFlags: 0
