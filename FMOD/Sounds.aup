@@ -1,7 +1,11 @@
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
-<project xmlns="http://audacity.sourceforge.net/xml/" projname="Sounds_data" version="1.3.0" audacityversion="2.1.3" sel0="0.0738461538" sel1="0.0738461538" vpos="0" h="0.0000000000" zoom="5484.3750000000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + hundredths" frequencyformat="Hz" bandwidthformat="octaves">
-	<tags/>
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="Sounds_data" version="1.3.0" audacityversion="2.1.3" sel0="0.4362563198" sel1="0.4362563198" vpos="160" h="0.0000000000" zoom="593.6876745114" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + hundredths" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="TITLE" value="Six Gun Holster"/>
+		<tag name="ARTIST" value="NIOCZKUS"/>
+		<tag name="COMMENTS" value="QUARK"/>
+	</tags>
 	<wavetrack name="BallLauncher" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
 		<waveclip offset="0.00000000">
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="12260">
@@ -39,6 +43,36 @@
 			<sequence maxsamples="262144" sampleformat="262159" numsamples="293">
 				<waveblock start="0">
 					<simpleblockfile filename="e0000710.au" len="293" min="-0.100298" max="0.062169" rms="0.014834"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="MouseClick" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="4955">
+				<waveblock start="0">
+					<simpleblockfile filename="e00007af.au" len="4955" min="-0.919159" max="0.999908" rms="0.082302"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="Reload" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="48000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="37729">
+				<waveblock start="0">
+					<simpleblockfile filename="e00006ec.au" len="37729" min="-0.550862" max="0.555017" rms="0.05778"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="SwitchWeapons" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="16862">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000b3b.au" len="16862" min="-0.474213" max="0.323029" rms="0.026571"/>
 				</waveblock>
 			</sequence>
 			<envelope numpoints="0"/>
