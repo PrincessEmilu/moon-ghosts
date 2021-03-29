@@ -126,14 +126,6 @@ public class GunBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Code that should happen when this gun is switched out
-    /// </summary>
-    public void OnSwitch()
-    {
-        // TODO: Disable the gun, somehow
-    }
-
-    /// <summary>
     /// Handles spawning and applying velocity/targetting to the bullet
     /// </summary>
     private void Shoot()

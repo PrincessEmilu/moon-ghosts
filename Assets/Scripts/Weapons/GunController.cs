@@ -9,9 +9,24 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     /// <summary>
-    /// The gun that the player is currently wielding.
+    /// The guns that the player currently has equiped.
     /// </summary>
-    [SerializeField] private GameObject currentGun;
+    [SerializeField] private GameObject[] gunLoadout;
+
+    public GameObject CurrentGun
+    {
+        set
+        {
+            currentGun = value;
+            gunBehavior = currentGun.GetComponent<GunBehavior>();
+        }
+        get
+        {
+            return currentGun;
+        }
+    }
+
+    private GameObject currentGun;
 
     /// <summary>
     /// Access to the gunbehavior attached to the current gun.
@@ -23,14 +38,23 @@ public class GunController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        gunBehavior = currentGun.GetComponent<GunBehavior>();
+        CurrentGun = gunLoadout[0];
+
+        if (gunLoadout.Length <= 1)
+            return;
+
+        for (int i = 1; i < gunLoadout.Length; i++)
+        {
+            gunLoadout[i].SetActive(false);
+        }
     }
 
     /// <summary>
     /// Checks for player input each Update.
     /// The player can shoot a full-auto gun by holding the mouse,
     /// A semi or bolt-action gun by clicking,
-    /// and they can reload by pressing R
+    /// they can reload by pressing R,
+    /// and they can switch weapons by rolling the mouse wheel
     /// </summary>
     void Update()
     {
@@ -51,6 +75,11 @@ public class GunController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.R))
         {
             gunBehavior.Reload();
+        }
+        // Switch Weapons
+        else if (Input.mouseScrollDelta.magnitude != 0)
+        {
+            Debug.Log("Swap gun");
         }
     }
 }
