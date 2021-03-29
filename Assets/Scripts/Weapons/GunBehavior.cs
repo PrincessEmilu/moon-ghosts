@@ -106,6 +106,7 @@ public class GunBehavior : MonoBehaviour
         if (!isReloading && isFireable && !gunClip.IsEmpty)
         {
             Shoot();
+            QualtricsDataContainer.AddWeaponShotFired(name); 
         }
         else
         {

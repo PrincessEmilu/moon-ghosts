@@ -9,17 +9,21 @@ using UnityEngine.Networking;
 /// Also contains methods to send and alter this data
 /// Author: Trenton Plager
 /// </summary>
-public class QualtricsDataContainer : MonoBehaviour
+public static class QualtricsDataContainer// : MonoBehaviour
 {
     #region Fields
-    private Dictionary<string, bool> accessibilityFeatures = new Dictionary<string, bool>();
-    private Dictionary<string, float> weaponUseTimes = new Dictionary<string, float>();
-    private Dictionary<string, int> weaponShotsFired = new Dictionary<string, int>();
+    private static Dictionary<string, bool> accessibilityFeatures = new Dictionary<string, bool>();
+    private static Dictionary<string, float> weaponUseTimes = new Dictionary<string, float>();
+    private static Dictionary<string, int> weaponShotsFired = new Dictionary<string, int>();
     #endregion
 
     #region Methods
-    void Start()
+    public static void Start()
     {
+        accessibilityFeatures.Clear();
+        weaponUseTimes.Clear(); 
+        weaponShotsFired.Clear();
+
         // Add new features here and also on the qualtrics survey under Survey Flow 
         accessibilityFeatures.Add("AimAssist", false);
         //accessibilityFeatures.Add("AccessibilityFeatureY", false);
@@ -39,7 +43,7 @@ public class QualtricsDataContainer : MonoBehaviour
     /// </summary>
     /// <param name="featureName">The name of the feature</param>
     /// <param name="offOrOn">Whether the feature is off or on</param>
-    public void SetAccessibilityFeature(string featureName, bool offOrOn)
+    public static void SetAccessibilityFeature(string featureName, bool offOrOn)
     {
         if (accessibilityFeatures.ContainsKey(featureName))
         {
@@ -56,7 +60,7 @@ public class QualtricsDataContainer : MonoBehaviour
     /// </summary>
     /// <param name="weaponName">The name of the weapon</param>
     /// <param name="secondsToAdd">The time to add to the weapon's use time value in seconds</param>
-    public void AddWeaponUseTime(string weaponName, float secondsToAdd)
+    public static void AddWeaponUseTime(string weaponName, float secondsToAdd)
     {
         if (weaponUseTimes.ContainsKey(weaponName))
         {
@@ -73,7 +77,7 @@ public class QualtricsDataContainer : MonoBehaviour
     /// Adds 1 shot to a weapon's shots fired value
     /// </summary>
     /// <param name="weaponName">The name of the weapon</param>
-    public void AddWeaponShotFired(string weaponName)
+    public static void AddWeaponShotFired(string weaponName)
     {
         if (weaponShotsFired.ContainsKey(weaponName))
         {
@@ -89,7 +93,7 @@ public class QualtricsDataContainer : MonoBehaviour
     /// Send relevant data to the qualtrics survey
     /// Intended to be used only at the end of a test
     /// </summary>
-    public void SendData()
+    public static void SendData()
     {
         string queryString = "https://rit.az1.qualtrics.com/jfe/form/SV_diIHkjs847UtUPk/?";
 
@@ -128,7 +132,7 @@ public class QualtricsDataContainer : MonoBehaviour
     /// <summary>
     /// Test method for reference
     /// </summary>
-    public void Test()
+    public static void Test()
     {
         WWWForm form = new WWWForm();
         UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get("https://rit.az1.qualtrics.com/jfe/form/SV_diIHkjs847UtUPk/?test=blah");
