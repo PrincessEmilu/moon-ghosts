@@ -107,9 +107,9 @@ public static class QualtricsDataContainer// : MonoBehaviour
             queryString += $"{weapon.Key}UseTime={Math.Round(weapon.Value, 2)}&";
         }
 
-        foreach (KeyValuePair<string, float> weapon in weaponUseTimes)
+        foreach (KeyValuePair<string, int> weapon in weaponShotsFired)
         {
-            queryString += $"{weapon.Key}ShotsFired={Math.Round(weapon.Value, 2)}&";
+            queryString += $"{weapon.Key}ShotsFired={weapon.Value}&";
         }
 
         queryString = queryString.Remove(queryString.Length - 1, 1);
