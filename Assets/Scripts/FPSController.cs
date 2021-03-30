@@ -91,7 +91,7 @@ public class FPSController : MonoBehaviour
                 controlState = ControlState.aimassit;
             }
 
-            Debug.Log("AIM ASSIST ON");
+            //Debug.Log("AIM ASSIST ON");
         }
         /*else
         {

@@ -56,6 +56,11 @@ public class GunBehavior : MonoBehaviour
 
     [SerializeField] Transform playerCamTransform = null;
 
+    [SerializeField] private SoundManager soundManager;
+
+    [FMODUnity.EventRef]
+    public string shootEvent;
+
     /// <summary>
     /// Initilaize the gun on Awake
     /// </summary>
@@ -68,6 +73,8 @@ public class GunBehavior : MonoBehaviour
         fireTimer = new Timer(fireRate);
 
         gunClip = new Clip(clipCapacity);
+
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     /// <summary>
@@ -80,7 +87,7 @@ public class GunBehavior : MonoBehaviour
             reloadTimer.Tick();
             if (reloadTimer.CheckTime())
             {
-                Debug.Log("Reload finished");
+                transform.Rotate(new Vector3(-45, 0, 0));
                 gunClip.RefillClip();
                 isReloading = false;
                 reloadTimer.Reset();
@@ -107,10 +114,8 @@ public class GunBehavior : MonoBehaviour
         {
             Shoot();
             QualtricsDataContainer.AddWeaponShotFired(name); 
-        }
-        else
-        {
-            Debug.Log("*click*");
+
+            soundManager.PlayShoot(shootEvent); 
         }
     }
 
@@ -121,17 +126,11 @@ public class GunBehavior : MonoBehaviour
     {
         if (!isReloading)
         {
-            Debug.Log("Reloading, cover me!");
+            transform.Rotate(new Vector3(45, 0, 0));
             isReloading = true;
-        }
-    }
 
-    /// <summary>
-    /// Code that should happen when this gun is switched out
-    /// </summary>
-    public void OnSwitch()
-    {
-        // TODO: Disable the gun, somehow
+            soundManager.PlayReload();
+        }
     }
 
     /// <summary>
@@ -145,5 +144,12 @@ public class GunBehavior : MonoBehaviour
 
         // TODO: Spawn a bullet, play animations, etc etc.
         Instantiate(bulletPrefab, gameObject.transform.position + transform.TransformDirection(muzzlePoint), playerCamTransform.rotation);
+    }
+
+    public void OnGunSwitch()
+    {
+        gameObject.SetActive(!gameObject.activeInHierarchy);
+
+        soundManager.PlaySwitchWeapon();
     }
 }
