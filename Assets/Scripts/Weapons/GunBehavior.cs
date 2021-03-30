@@ -56,6 +56,11 @@ public class GunBehavior : MonoBehaviour
 
     [SerializeField] Transform playerCamTransform = null;
 
+    [SerializeField] private SoundManager soundManager;
+
+    [FMODUnity.EventRef]
+    public string shootEvent;
+
     /// <summary>
     /// Initilaize the gun on Awake
     /// </summary>
@@ -68,6 +73,8 @@ public class GunBehavior : MonoBehaviour
         fireTimer = new Timer(fireRate);
 
         gunClip = new Clip(clipCapacity);
+
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     /// <summary>
@@ -106,6 +113,8 @@ public class GunBehavior : MonoBehaviour
         if (!isReloading && isFireable && !gunClip.IsEmpty)
         {
             Shoot();
+
+            soundManager.PlayShoot(shootEvent); 
         }
     }
 
@@ -118,6 +127,8 @@ public class GunBehavior : MonoBehaviour
         {
             transform.Rotate(new Vector3(45, 0, 0));
             isReloading = true;
+
+            soundManager.PlayReload();
         }
     }
 
@@ -137,5 +148,7 @@ public class GunBehavior : MonoBehaviour
     public void OnGunSwitch()
     {
         gameObject.SetActive(!gameObject.activeInHierarchy);
+
+        soundManager.PlaySwitchWeapon();
     }
 }
