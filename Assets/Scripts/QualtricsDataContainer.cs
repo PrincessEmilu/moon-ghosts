@@ -25,17 +25,17 @@ public static class QualtricsDataContainer// : MonoBehaviour
         weaponShotsFired.Clear();
 
         // Add new features here and also on the qualtrics survey under Survey Flow 
-        accessibilityFeatures.Add("AimAssist", false);
+        accessibilityFeatures.Add("AimAssist", true);
         //accessibilityFeatures.Add("AccessibilityFeatureY", false);
 
         // Add new weapons here and also on the qualtrics survey under Survey Flow 
         // Time will be stored in minutes, but added in seconds
         weaponUseTimes.Add("BallLauncher", 0);
-        weaponUseTimes.Add("DiscPistol", 0);
+        weaponUseTimes.Add("DiscShooter", 0);
 
         // Add new weapons here and also on the qualtrics survey under Survey Flow 
         weaponShotsFired.Add("BallLauncher", 0);
-        weaponShotsFired.Add("DiscPistol", 0); 
+        weaponShotsFired.Add("DiscShooter", 0); 
     }
 
     /// <summary>

@@ -61,6 +61,8 @@ public class GunBehavior : MonoBehaviour
     [FMODUnity.EventRef]
     public string shootEvent;
 
+    public System.DateTime switchTime; 
+
     /// <summary>
     /// Initilaize the gun on Awake
     /// </summary>
@@ -75,6 +77,8 @@ public class GunBehavior : MonoBehaviour
         gunClip = new Clip(clipCapacity);
 
         soundManager = FindObjectOfType<SoundManager>();
+
+        switchTime = System.DateTime.Now;
     }
 
     /// <summary>
@@ -113,6 +117,7 @@ public class GunBehavior : MonoBehaviour
         if (!isReloading && isFireable && !gunClip.IsEmpty)
         {
             Shoot();
+
             QualtricsDataContainer.AddWeaponShotFired(name); 
 
             soundManager.PlayShoot(shootEvent); 
@@ -148,8 +153,19 @@ public class GunBehavior : MonoBehaviour
 
     public void OnGunSwitch()
     {
-        gameObject.SetActive(!gameObject.activeInHierarchy);
+        if (!gameObject.activeInHierarchy)
+        {
+            switchTime = System.DateTime.Now; 
+        }
+        else
+        {
+            float secondsUsed = (float)(System.DateTime.Now - switchTime).TotalSeconds;
+
+            QualtricsDataContainer.AddWeaponUseTime(name, secondsUsed);
+        }
 
         soundManager.PlaySwitchWeapon();
+
+        gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 }
