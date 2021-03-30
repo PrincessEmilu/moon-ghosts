@@ -11,7 +11,7 @@ public class GunController : MonoBehaviour
     /// <summary>
     /// The guns that the player currently has equiped.
     /// </summary>
-    [SerializeField] private GameObject[] gunLoadout;
+    [SerializeField] public GameObject[] gunLoadout;
 
     public int CurrentGunIndex
     {
