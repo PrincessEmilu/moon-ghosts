@@ -114,7 +114,7 @@ public static class QualtricsDataContainer// : MonoBehaviour
 
         queryString = queryString.Remove(queryString.Length - 1, 1);
 
-        Application.OpenURL("surveyURL" + queryString);
+        Application.OpenURL(queryString);
 
         //UnityWebRequest www = UnityWebRequest.Get(queryString);
 
