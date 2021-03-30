@@ -42,6 +42,7 @@ public class FPSController : MonoBehaviour
 
     public float fovAngle = 40f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,10 +83,21 @@ public class FPSController : MonoBehaviour
 
     private void ProcessNormalControl()
     {
-        if (Input.GetMouseButtonDown(1))
+        if(MainMenu.AimAssistON == true)
         {
-            controlState = ControlState.aimassit;
+            if (Input.GetMouseButtonDown(1))
+            {
+
+                controlState = ControlState.aimassit;
+            }
+
+            //Debug.Log("AIM ASSIST ON");
         }
+        /*else
+        {
+            Debug.Log("Skipped Successfully");
+        }   */    
+
         ProcessPlayerLook();
         ProcessPlayerMovement();
     }

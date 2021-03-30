@@ -9,9 +9,9 @@ using UnityEngine;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
-
     [SerializeField] float baseDamage;
     [SerializeField] float maximumLifetime;
+    [SerializeField] float projectileSpeed = 45f;
 
     private Timer cullTimer;
 
@@ -29,10 +29,22 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //moving the bullet forward.
+        transform.position += transform.forward * Time.deltaTime * projectileSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // TODO: On collision with something that can be damaged, damage that something
+        Debug.Log("Hit soemthing");
+       
+        IDamageable<float> damageable = collision.transform.GetComponent<IDamageable<float>>();
+
+        if (damageable == null)
+        {
+            return;
+        }
+
+        damageable.TakeDamage(baseDamage);
     }
 }
