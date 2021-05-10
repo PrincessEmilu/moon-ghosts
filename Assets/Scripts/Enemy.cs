@@ -99,16 +99,16 @@ public class Enemy : MonoBehaviour
     public void ObstcaleAvoidance(GameObject obstacle)
     {
         Vector3 betweenVec = gameObject.transform.position - obstacle.transform.position;
-        float myR = gameObject.GetComponent<CapsuleCollider>().radius + 0.5f;
+        float myR = gameObject.GetComponent<CapsuleCollider>().radius + 0.75f;
         float theirR = 0.0f;
 
         if (obstacle.tag == "Enemy")
         {
-            theirR = obstacle.GetComponent<CapsuleCollider>().radius;
+            theirR = obstacle.GetComponent<CapsuleCollider>().radius + 0.75f;
         }
         else if (obstacle.tag == "Obstacle")
         {
-            theirR = obstacle.GetComponent<Obstacle>().radius;
+            theirR = obstacle.GetComponent<Obstacle>().radius + 0.5f;
         }
 
 
@@ -131,13 +131,12 @@ public class Enemy : MonoBehaviour
             // positive is to the right
             if (Vector3.Dot(betweenVec, transform.right) > 0)
             {
-                Debug.Log("Avoiding to the right");
-                rb.AddForce(Vector3.left * speed, ForceMode.Force);
+                rb.AddForce(Vector3.left * speed * 2.0f);
             }
             // everything else is to the left
             else
             {
-                rb.AddForce(Vector3.right * speed, ForceMode.Force);
+                rb.AddForce(Vector3.right * speed * 2.0f);
             }
         }
     }

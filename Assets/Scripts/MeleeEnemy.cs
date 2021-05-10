@@ -48,12 +48,6 @@ public class MeleeEnemy : Enemy
     void Update()
     {
 
-        // loops trhough each obstacle and avoids them
-        for (int i = 0; i < obstacles.Count; i++)
-        {
-            ObstcaleAvoidance(obstacles[i]);
-        }
-
         // if I am close enough to the player, chase it. otherwise, wander
         if (DistBetween(player) <= sightRange)
         {
@@ -66,13 +60,23 @@ public class MeleeEnemy : Enemy
             currentState = MeleeState.wander;
         }
 
+
+        // loops trhough each obstacle and avoids them
+        for (int i = 0; i < obstacles.Count; i++)
+        {
+            ObstcaleAvoidance(obstacles[i]);
+        }
+
         // clamping the magnitude of the speed
         if (Vector3.Magnitude(rb.velocity) > maxSpeed)
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
 
-        // transform.LookAt(transform.position + rb.velocity);
+        Vector3 tempRotVec = transform.position + rb.velocity;
+        tempRotVec.y = 1.0f;
+
+        transform.LookAt(tempRotVec);
         Debug.DrawRay(transform.position, transform.forward, Color.green);
     }
 
