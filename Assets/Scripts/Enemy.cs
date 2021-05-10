@@ -127,13 +127,6 @@ public class Enemy : MonoBehaviour
         // check if the dot(betweenVec, right) < myR + theirR, which means they will collide, 
         if (Vector3.Dot(betweenVec, transform.right) < myR + theirR)
         {
-            int wallLayer = LayerMask.GetMask("Wall");
-            Vector3 center = new Vector3(30.0f, 1.0f, 26.0f);
-            if (obstacle.layer == wallLayer)
-            {
-                rb.AddForce(center - transform.position * 10.0f, ForceMode.Force);
-                return;
-            }
             // dot against my right and see if they are on the left or the right
             // positive is to the right
             if (Vector3.Dot(betweenVec, transform.right) > 0)

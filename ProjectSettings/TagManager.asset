@@ -7,6 +7,8 @@ TagManager:
   - Obstacle
   - MeleeEnemy
   - Enemy
+  - Bounds
+  - Wall
   layers:
   - Default
   - TransparentFX
