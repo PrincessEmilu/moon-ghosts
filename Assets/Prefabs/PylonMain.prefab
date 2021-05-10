@@ -138,8 +138,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0, g: 0.93155813, b: 1, a: 1}
-  m_Intensity: 4
-  m_Range: 10
+  m_Intensity: 10
+  m_Range: 100
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -292,6 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6227410882126335301}
+  - component: {fileID: 8700704009704199099}
   m_Layer: 0
   m_Name: PylonMain
   m_TagString: Untagged
@@ -316,3 +317,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8700704009704199099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039802792625477407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3baa3efa891c1e24c97cb48e96730709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupController: {fileID: 0}
+  pylonPointLight: {fileID: 9076114007335643047}
