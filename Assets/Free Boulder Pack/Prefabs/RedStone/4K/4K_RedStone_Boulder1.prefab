@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3307714}
   - component: {fileID: 2300070}
   - component: {fileID: 9582066}
+  - component: {fileID: 7207996011055465164}
   m_Layer: 0
   m_Name: 4K_RedStone_Boulder1
   m_TagString: Boulder
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 199180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.396, y: 0, z: -1.44}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -101,3 +102,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &7207996011055465164
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199180}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: fe7f93253fa313744926ad00c7fc9ef4, type: 3}
