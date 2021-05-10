@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GhostMat
+  m_Shader: {fileID: -6465566751694194690, guid: 6c4852c2f84166841a0f1261fffd6393, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_e522a58544764a50b34f46465fd16750:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_7cebcd9c20ed465a89e006dcd072507a_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 8bff5a8607202f84b84a9af8ab8eb29c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_2e1778aa7a2e4aa99a9c137252a758d8: 10
+    - Vector1_3745406431b143c2b57a3cf6a1b83c50: 0.05
+    - Vector1_a1a940b63ca54b03bc913d97054b4d1b: 5
+    - Vector1_d7705f94d4e74ae1b74f799affbe3449: 1
+    - Vector1_e1433f038377406cb48599f79e552130: 0.5
+    m_Colors:
+    - Color_5ac55a6473434fc29135f7e560e922d9: {r: 4.6025987, g: 487.89792, b: 879.09467, a: 0}
+    - Color_6f9548b6b0a645288ae0ffd46fb658ad: {r: 0, g: 7.552344, b: 7.552344, a: 0}
+    - Color_e2a9e039a4b74151af67df20c4fbb398: {r: 1, g: 0, b: 0.8306856, a: 0}
+    - Vector3_8615fef708674dc486ae1522df27f438: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

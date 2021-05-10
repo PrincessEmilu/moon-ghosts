@@ -118,9 +118,10 @@ public class GunBehavior : MonoBehaviour
         {
             Shoot();
 
-            QualtricsDataContainer.AddWeaponShotFired(name); 
+            QualtricsDataContainer.AddWeaponShotFired(name);
 
-            soundManager.PlayShoot(shootEvent); 
+            //soundManager.PlayShoot(shootEvent); 
+            Debug.Log("sound disabled");
         }
     }
 
@@ -134,7 +135,8 @@ public class GunBehavior : MonoBehaviour
             transform.Rotate(new Vector3(45, 0, 0));
             isReloading = true;
 
-            soundManager.PlayReload();
+            //soundManager.PlayReload();
+            Debug.Log("Sound is disabled");
         }
     }
 

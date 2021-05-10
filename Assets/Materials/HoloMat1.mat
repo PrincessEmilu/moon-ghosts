@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HoloMat1
+  m_Shader: {fileID: -6465566751694194690, guid: 348a90e7523ed304390027315dc8d315, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_a52413a05a114bbeae213d93726753ad:
+        m_Texture: {fileID: 2800000, guid: bc109e64385329043b5bed5dfef6ee47, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_989cdb04578048ba99099c5c27062dd4: 0.01
+    m_Colors:
+    - Color_1906724166bd4830b16258bdb4352abb: {r: 0, g: 28.109804, b: 766.9961, a: 0}
+    - Color_1cb38f11fef6480881110f78911f8ee2: {r: 0.6853424, g: 0, b: 0.764151, a: 0}
+    - Vector2_59310b960fbf4f3c9d6d594b594fd53d: {r: 1, g: 0.5, b: 0, a: 0}
+  m_BuildTextureStacks: []
