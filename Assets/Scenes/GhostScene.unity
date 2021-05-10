@@ -811,6 +811,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8741016379002586815, guid: 90af3e45058fd7041830026a4f5773a3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed4cd64a1d12c2740906684ef12b7701, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90af3e45058fd7041830026a4f5773a3, type: 3}
 --- !u!1 &1352929496
@@ -1441,6 +1445,8 @@ GameObject:
   - component: {fileID: 1988061303}
   - component: {fileID: 1988061302}
   - component: {fileID: 1988061306}
+  - component: {fileID: 1988061307}
+  - component: {fileID: 1988061308}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Player
@@ -1541,6 +1547,50 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &1988061307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988061301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191779c115275e34b87a5a304b644556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1352929498}
+  mouseSensitivity: 3.5
+  movementSpeed: 8
+  gravity: -10
+  movementSmoothDuration: 0.2
+  minThrust: 0.95
+  maxThrust: 2
+  currentThrust: 2
+  maxDashCoolDown: 2
+  dashCD: 0
+  dashDuration: 0.5
+  dashVelocityMultiplier: 1.5
+  lookSmoothDuration: 0.03
+  health: 3
+--- !u!143 &1988061308
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988061301}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2599396893647408515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1625,6 +1675,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2736950209624821121, guid: 686ce88f716fd77479f9f1807587229b, type: 3}
+      propertyPath: bounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 799942517}
+    - target: {fileID: 2736950209624821121, guid: 686ce88f716fd77479f9f1807587229b, type: 3}
+      propertyPath: bounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 837483204}
     - target: {fileID: 5180240896652300034, guid: 686ce88f716fd77479f9f1807587229b, type: 3}
       propertyPath: m_Name
       value: Sphere
@@ -1675,51 +1733,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 686ce88f716fd77479f9f1807587229b, type: 3}
---- !u!1 &2736950209624821119 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5180240896652300034, guid: 686ce88f716fd77479f9f1807587229b, type: 3}
-  m_PrefabInstance: {fileID: 2736950209624821118}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &2736950209624821120
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2736950209624821119}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &2736950209624821121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2736950209624821119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ca8b300b879f2346b3bd0fc2457a79d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  player: {fileID: 0}
-  health: 0
-  prevVec: {x: 0, y: 0, z: 0}
-  wanderDiff: 0
-  maxSpeed: 0
-  speed: 0
-  cdTimer: 0
-  fireCD: 0
-  canFire: 0
-  projectile: {fileID: 7962586437518154334, guid: 93713ef69dcfc2645b21426feba3832b, type: 3}
-  bounds:
-  - {fileID: 799942517}
-  - {fileID: 837483204}
-  currentBound: 0

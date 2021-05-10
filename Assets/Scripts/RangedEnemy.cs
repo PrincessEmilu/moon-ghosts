@@ -80,6 +80,7 @@ public class RangedEnemy : Enemy
         Vector3 tempVec = target - transform.position;
         GameObject tempProj = GameObject.Instantiate(projectile, transform.position + Vector3.Normalize(tempVec), Quaternion.identity);
         tempProj.GetComponent<Projectile>().targetVec = target;
+        tempProj.GetComponent<Projectile>().player = player;
     }
 
     // collision resolution with trigger objects
