@@ -6,17 +6,27 @@ using System.Linq;
 
 public class FPSController : MonoBehaviour
 {
-    enum ControlState { fps, aimassit }
-    ControlState controlState = ControlState.fps;
-
+    #region Fields
     [SerializeField] private Camera playerCamera = null;
     private Transform playerCamTransform = null;
 
     //Movement Related values
     [SerializeField] private float mouseSensitivity = 3.5f;
     [SerializeField] private float movementSpeed = 8.0f;
-    [SerializeField] private float gravity = -15.0f;
-    [SerializeField] [Range(0.0f, 0.5f)] private float movementSmoothDuration = 0.3f;
+    [SerializeField] private float gravity = -10.0f;
+    [SerializeField] [Range(0.0f, 0.3f)] private float movementSmoothDuration = 0.2f;
+
+    //Jetpack things
+    [SerializeField] private float minThrust = 0.95f;
+    [SerializeField] private float maxThrust = 2.0f;
+    [SerializeField] private float currentThrust = 2.0f;
+
+    // Dash cooldown
+    [SerializeField] private float maxDashCoolDown = 2.0f;
+    [SerializeField] private float dashCD = 0.0f;
+    [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private float dashVelocityMultiplier = 1.5f;
+    private Vector3 dash = Vector3.zero;
 
     //Look or Rotation related values
     [SerializeField] [Range(0.0f, 0.5f)] private float lookSmoothDuration = 0.03f;
@@ -34,6 +44,7 @@ public class FPSController : MonoBehaviour
     private Vector2 currentSmoothedMouseInput = Vector2.zero;
     private Vector2 currentMouseDeltaVelocity = Vector2.zero;
 
+    /*
     //aim assist related
     public float detectionRadius = 20f;
 
@@ -41,6 +52,8 @@ public class FPSController : MonoBehaviour
     public LayerMask obstacleLayer;
 
     public float fovAngle = 40f;
+    */
+    #endregion
 
 
     // Start is called before the first frame update
@@ -62,25 +75,15 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //toDo Decouple Cursor locking from this controller script. 
         ProcessUnlockCursorInput();
 
-        //Press Right mouse click to trigger aim assist mechanic.
-        switch (controlState)
-        {
-            case ControlState.fps:
-                ProcessNormalControl();
-                break;
-            case ControlState.aimassit:
-                ActivateAimAssist();
-                break;
-            default:
-                break;
-        }
+        ProcessPlayerLook();
+        ProcessPlayerMovement();
 
 
     }
 
+    /*
     private void ProcessNormalControl()
     {
         if(MainMenu.AimAssistON == true)
@@ -92,15 +95,12 @@ public class FPSController : MonoBehaviour
             }
 
             //Debug.Log("AIM ASSIST ON");
-        }
-        /*else
-        {
-            Debug.Log("Skipped Successfully");
-        }   */    
+        }  
 
         ProcessPlayerLook();
         ProcessPlayerMovement();
     }
+    */
 
     private void ProcessPlayerMovement()
     {
@@ -110,21 +110,60 @@ public class FPSController : MonoBehaviour
 
         currentSmoothedDirection = Vector2.SmoothDamp(currentSmoothedDirection, targetDirection, ref currentDirVelocity, movementSmoothDuration);
 
-        //Gravity Related
-        if (characterController.isGrounded)
-        {
-            velocityY = 0.0f;
-        }
-        velocityY += gravity * Time.deltaTime;
-
+        ProcessJetpack();
+       
         Vector3 velocity = (transform.forward * currentSmoothedDirection.y + transform.right * currentSmoothedDirection.x);
 
-        velocity *= movementSpeed;
+        // movement speed is faster on the ground and slower in the air
+        if(characterController.isGrounded)
+        {
+            velocity *= movementSpeed;
+        } else
+        {
+            velocity *= 0.8f * movementSpeed;
+        }
+
+        // dash is strictly horizontal, so process before adding vertical velocity
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCD <= 0)
+        {
+            dash = ProcessDash(velocity);
+        }
+        // For a specified duration, add the dash vector to velocity
+        if(dashCD >= maxDashCoolDown - dashDuration)
+        {
+            velocity += dash;
+        }
+        dashCD -= Time.deltaTime;
 
         velocity += Vector3.up * velocityY;
 
         characterController.Move(velocity * Time.deltaTime);
 
+    }
+
+    private void ProcessJetpack()
+    {
+        //Gravity Related
+        if (characterController.isGrounded)
+        {
+            velocityY = 0.0f;
+            currentThrust = maxThrust;
+        }
+        velocityY += gravity * Time.deltaTime;
+
+        // Jumping / Jetpack
+        if (Input.GetKey(KeyCode.Space))
+        {
+            velocityY += -currentThrust * gravity * Time.deltaTime;
+            if (currentThrust > minThrust) { currentThrust -= 0.002f; }
+        }
+    }
+
+    private Vector3 ProcessDash(Vector3 velocity)
+    {
+        dashCD = maxDashCoolDown;
+        return velocity * dashVelocityMultiplier;
     }
 
     private void ProcessPlayerLook()
@@ -141,8 +180,6 @@ public class FPSController : MonoBehaviour
         playerCamera.transform.localEulerAngles = Vector3.right * cameraPitch;
 
         transform.Rotate(transform.up * currentSmoothedMouseInput.x * mouseSensitivity);
-
-
     }
 
     private void ProcessUnlockCursorInput()
@@ -154,6 +191,7 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    /*
     public Transform GetClosestUnobstructedTarget()
     {
         List<Collider> unobstructedColliders = new List<Collider>();
@@ -226,4 +264,5 @@ public class FPSController : MonoBehaviour
     {
         Gizmos.DrawWireSphere(playerCamera.transform.position, detectionRadius);
     }
+    */
 }
