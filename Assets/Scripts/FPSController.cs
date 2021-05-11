@@ -28,6 +28,7 @@ public class FPSController : MonoBehaviour, IDamageable<float>
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashVelocityMultiplier = 1.5f;
     private Vector3 dash = Vector3.zero;
+    private bool dashCDSoundPRoc = true;
 
     //Look or Rotation related values
     [SerializeField] [Range(0.0f, 0.5f)] private float lookSmoothDuration = 0.03f;
@@ -46,6 +47,15 @@ public class FPSController : MonoBehaviour, IDamageable<float>
     private Vector2 currentMouseDeltaVelocity = Vector2.zero;
 
     [SerializeField] private float health = 3;
+
+    [FMODUnity.EventRef]
+    public string dashEvent;
+
+    [FMODUnity.EventRef]
+    public string cooldownEvent;
+
+    [FMODUnity.EventRef]
+    public string damagedEvent;
 
     /*
     //aim assist related
@@ -126,14 +136,24 @@ public class FPSController : MonoBehaviour, IDamageable<float>
             velocity *= 0.8f * movementSpeed;
         }
 
+        // play auditory indicator for dash being ready, only plays once & then switches the bool
+
+        if(dashCD <= 0 && dashCDSoundPRoc == false)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(cooldownEvent, transform.position);
+            dashCDSoundPRoc = true;
+        }
+
         // dash is strictly horizontal, so process before adding vertical velocity
-        
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && dashCD <= 0)
         {
             dash = ProcessDash(velocity);
+            FMODUnity.RuntimeManager.PlayOneShot(dashEvent, transform.position);
+            dashCDSoundPRoc = false;
         }
         // For a specified duration, add the dash vector to velocity
-        if(dashCD >= maxDashCoolDown - dashDuration)
+        if (dashCD >= maxDashCoolDown - dashDuration)
         {
             velocity += dash;
         }
@@ -272,7 +292,9 @@ public class FPSController : MonoBehaviour, IDamageable<float>
     public void TakeDamage(float damageTaken)
     {
         health -= damageTaken;
-        if(health <= 0 )
+        FMODUnity.RuntimeManager.PlayOneShot(damagedEvent, transform.position);
+
+        if (health <= 0 )
         {
             // transform.position = new Vector3(32.0f, 1.0f, 31.0f);
             health = 3.0f;

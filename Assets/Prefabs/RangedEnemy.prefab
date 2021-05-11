@@ -132,6 +132,7 @@ MonoBehaviour:
   wanderDiff: 0
   maxSpeed: 0
   speed: 0
+  dieEvent: event:/Enemy/Die
   cdTimer: 0
   fireCD: 0
   canFire: 0
@@ -140,3 +141,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentBound: 0
+  attackEvent: event:/Enemy/Ranged Attack

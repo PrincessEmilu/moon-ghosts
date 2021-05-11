@@ -227,6 +227,9 @@ MonoBehaviour:
   dashVelocityMultiplier: 1.5
   lookSmoothDuration: 0.03
   health: 3
+  dashEvent: event:/Player/Dash
+  cooldownEvent: event:/Player/Cooldown
+  damagedEvent: event:/Player/Damage
 --- !u!114 &4521209160879684431
 MonoBehaviour:
   m_ObjectHideFlags: 0
