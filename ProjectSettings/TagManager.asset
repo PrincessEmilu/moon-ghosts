@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Obstacle
+  - MeleeEnemy
+  - Enemy
+  - Bounds
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - Weapon
   - Target
   - Obstacle
-  - 
+  - Wall
   - 
   - 
   - 

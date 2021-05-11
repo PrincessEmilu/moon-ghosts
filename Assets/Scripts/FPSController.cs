@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class FPSController : MonoBehaviour
+public class FPSController : MonoBehaviour, IDamageable<float>
 {
     #region Fields
     [SerializeField] private Camera playerCamera = null;
@@ -43,6 +43,8 @@ public class FPSController : MonoBehaviour
     private Vector2 currentDirVelocity = Vector2.zero;
     private Vector2 currentSmoothedMouseInput = Vector2.zero;
     private Vector2 currentMouseDeltaVelocity = Vector2.zero;
+
+    [SerializeField] private float health = 3;
 
     /*
     //aim assist related
@@ -265,4 +267,15 @@ public class FPSController : MonoBehaviour
         Gizmos.DrawWireSphere(playerCamera.transform.position, detectionRadius);
     }
     */
+
+    public void TakeDamage(float damageTaken)
+    {
+        health -= damageTaken;
+        if(health <= 0 )
+        {
+            transform.position = new Vector3(32.0f, 1.0f, 31.0f);
+            health = 3.0f;
+            // end screen here
+        }
+    }
 }
