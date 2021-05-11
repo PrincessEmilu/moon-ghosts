@@ -96,6 +96,7 @@ public class MeleeEnemy : Enemy
         if (collision.collider.tag == "Player")
         {
             player.GetComponent<FPSController>().TakeDamage(1.0f);
+            obstacles.Remove(gameObject);
             Destroy(gameObject);
         }
     }

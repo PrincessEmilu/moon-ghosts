@@ -39,7 +39,7 @@ public class RangedEnemy : Enemy
         }
 
         // if I see the player, fire
-        if (DistBetween(player) < 5)
+        if (DistBetween(player) < 15)
         {
             rb.velocity = rb.velocity * 0.8f;
             if (canFire == true)
