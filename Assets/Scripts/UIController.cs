@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
 
     public void OnPlay()
     {
+        Debug.Log("CLick");
         SceneManager.LoadScene("IntroScene");
     }
 
