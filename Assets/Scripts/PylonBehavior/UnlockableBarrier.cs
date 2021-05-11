@@ -9,6 +9,9 @@ public class UnlockableBarrier : MonoBehaviour, ISwitchTriggerable
     [SerializeField] private KeyCode activationKey;
     [SerializeField] private const float ActivationDistance = 15.0f;
 
+    [FMODUnity.EventRef]
+    public string openEvent;
+
     bool barrierActive = true;
 
     public void OnTriggerActivate()
@@ -29,6 +32,7 @@ public class UnlockableBarrier : MonoBehaviour, ISwitchTriggerable
                 {
                     // TODO: Game end logic
                     Debug.Log("You entered the door");
+                    FMODUnity.RuntimeManager.PlayOneShot(openEvent, transform.position);
                     SceneManager.LoadScene("VictoryScene");
                 }
             }

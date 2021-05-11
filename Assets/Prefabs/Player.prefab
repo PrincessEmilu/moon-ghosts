@@ -230,6 +230,10 @@ MonoBehaviour:
   dashEvent: event:/Player/Dash
   cooldownEvent: event:/Player/Cooldown
   damagedEvent: event:/Player/Damage
+  walkingEvent: event:/Player/Walk
+  walkingWithFMOD: 0
+  flyingEvent: event:/Player/Jetpack
+  alreadyFlying: 0
 --- !u!114 &4521209160879684431
 MonoBehaviour:
   m_ObjectHideFlags: 0

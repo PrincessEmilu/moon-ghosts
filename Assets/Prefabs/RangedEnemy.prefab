@@ -133,6 +133,7 @@ MonoBehaviour:
   maxSpeed: 0
   speed: 0
   dieEvent: event:/Enemy/Die
+  nukemEvent: event:/Player/Kill
   cdTimer: 0
   fireCD: 0
   canFire: 0

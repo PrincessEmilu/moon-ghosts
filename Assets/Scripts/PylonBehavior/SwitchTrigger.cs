@@ -11,6 +11,9 @@ public class SwitchTrigger : MonoBehaviour
     [SerializeField] private GameObject objectToActivate;
     [SerializeField] private Light lightToDeactivate;
 
+    [FMODUnity.EventRef]
+    public string activateEvent;
+
     // This assumes that the player is the object that must be near the switch
     [SerializeField] private GameObject playerObject;
 
@@ -30,7 +33,7 @@ public class SwitchTrigger : MonoBehaviour
     private void OnSwitchActivated()
     {
         Debug.Log("Pylon Switch Activated!");
-
+        FMODUnity.RuntimeManager.PlayOneShot(activateEvent, transform.position);
         switchEnabled = false;
         objectToActivate.GetComponent<ISwitchTriggerable>().OnTriggerActivate();
         lightToDeactivate.color = Color.yellow;

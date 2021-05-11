@@ -238,6 +238,7 @@ MonoBehaviour:
   activationKey: 102
   objectToActivate: {fileID: 0}
   lightToDeactivate: {fileID: 5770818264202300365}
+  activateEvent: event:/Pylon Switch
   playerObject: {fileID: 0}
 --- !u!1 &8294566362388925708
 GameObject:

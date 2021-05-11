@@ -15,6 +15,9 @@ public class Enemy : MonoBehaviour, IDamageable<float>
     [FMODUnity.EventRef]
     public string dieEvent;
 
+    [FMODUnity.EventRef]
+    public string nukemEvent;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -36,6 +39,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>
         if(health <= 0)
         {
             FMODUnity.RuntimeManager.PlayOneShot(dieEvent, transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(nukemEvent, transform.position);
             Destroy(gameObject);
         }
     }

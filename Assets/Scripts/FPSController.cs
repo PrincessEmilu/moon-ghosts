@@ -57,6 +57,18 @@ public class FPSController : MonoBehaviour, IDamageable<float>
     [FMODUnity.EventRef]
     public string damagedEvent;
 
+    [FMODUnity.EventRef]
+    public string walkingEvent;
+    FMOD.Studio.EventInstance walkingState;
+
+    public bool walkingWithFMOD = false;
+
+    [FMODUnity.EventRef]
+    public string flyingEvent;
+    FMOD.Studio.EventInstance flyingState;
+
+    public bool alreadyFlying;
+
     /*
     //aim assist related
     public float detectionRadius = 20f;
@@ -74,6 +86,8 @@ public class FPSController : MonoBehaviour, IDamageable<float>
     {
         characterController = this.GetComponent<CharacterController>();
         playerCamTransform = playerCamera.transform;
+        walkingState = FMODUnity.RuntimeManager.CreateInstance(walkingEvent);
+        flyingState = FMODUnity.RuntimeManager.CreateInstance(flyingEvent);
 
         //toDo Decouple from this controller script.
         DisableCursor();
@@ -124,11 +138,11 @@ public class FPSController : MonoBehaviour, IDamageable<float>
         currentSmoothedDirection = Vector2.SmoothDamp(currentSmoothedDirection, targetDirection, ref currentDirVelocity, movementSmoothDuration);
 
         ProcessJetpack();
-       
+
         Vector3 velocity = (transform.forward * currentSmoothedDirection.y + transform.right * currentSmoothedDirection.x);
 
         // movement speed is faster on the ground and slower in the air
-        if(characterController.isGrounded)
+        if (characterController.isGrounded)
         {
             velocity *= movementSpeed;
         } else
@@ -138,7 +152,7 @@ public class FPSController : MonoBehaviour, IDamageable<float>
 
         // play auditory indicator for dash being ready, only plays once & then switches the bool
 
-        if(dashCD <= 0 && dashCDSoundPRoc == false)
+        if (dashCD <= 0 && dashCDSoundPRoc == false)
         {
             FMODUnity.RuntimeManager.PlayOneShot(cooldownEvent, transform.position);
             dashCDSoundPRoc = true;
@@ -161,6 +175,9 @@ public class FPSController : MonoBehaviour, IDamageable<float>
 
         velocity += Vector3.up * velocityY;
 
+        // play walking sound effect if moving
+        WalkingSounds();
+
         characterController.Move(velocity * Time.deltaTime);
 
     }
@@ -178,8 +195,25 @@ public class FPSController : MonoBehaviour, IDamageable<float>
         // Jumping / Jetpack
         if (Input.GetKey(KeyCode.Space))
         {
+            if(!alreadyFlying)
+            {
+                flyingState.start();
+                alreadyFlying = true;
+            }
+            
             velocityY += -currentThrust * gravity * Time.deltaTime;
             if (currentThrust > minThrust) { currentThrust -= 0.002f; }
+
+            // first time the space bar registers, you want to start the event.
+            // first time space bar is released, you want to stop the event.
+        }
+        else
+        {
+            if (alreadyFlying)
+            {
+                flyingState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                alreadyFlying = false;
+            }
         }
     }
 
@@ -297,10 +331,35 @@ public class FPSController : MonoBehaviour, IDamageable<float>
         if (health <= 0 )
         {
             // transform.position = new Vector3(32.0f, 1.0f, 31.0f);
+            walkingState.release();
+            flyingState.release();
+            walkingState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            flyingState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
             health = 3.0f;
+            
             // end screen here
             // 4 is the int for try again screen
             SceneManager.LoadScene(4);
         }
+    }
+
+    private void WalkingSounds()
+    {
+        
+        if (characterController.isGrounded && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
+        {
+            if(!walkingWithFMOD)
+            {
+                walkingState.start();
+                walkingWithFMOD = true;
+            }
+        }
+        else
+        {
+            walkingState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            walkingWithFMOD = false;
+        }
+        
     }
 }

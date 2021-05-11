@@ -98,6 +98,9 @@
 		<property name="delayType">
 			<value>0</value>
 		</property>
+		<property name="volume">
+			<value>-40</value>
+		</property>
 		<relationship name="sounds">
 			<destination>{e72fc47c-8621-4aac-b731-77f6fdfcc1f1}</destination>
 			<destination>{0912e2ff-2d26-4a0d-978d-2e0fee3c02f6}</destination>
@@ -131,6 +134,9 @@
 		<relationship name="markerTrack">
 			<destination>{1015dcb3-1467-4345-82ba-2c1e68fc3a86}</destination>
 		</relationship>
+		<relationship name="triggerConditions">
+			<destination>{ce321a31-1231-4adf-8941-47ea75182de3}</destination>
+		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{ff36ffe7-4238-434f-ace9-e5110307b09e}">
 		<relationship name="effects">
@@ -160,6 +166,7 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{56ef7d37-0537-4ee1-becf-1b04c14941d6}" />
+	<object class="EventCondition" id="{ce321a31-1231-4adf-8941-47ea75182de3}" />
 	<object class="MixerBusFader" id="{6ccf5a3a-bff9-4762-9083-7000e05f4256}" />
 	<object class="MixerBusFader" id="{72c64d78-f9df-4226-8a03-de58be099205}" />
 </objects>
