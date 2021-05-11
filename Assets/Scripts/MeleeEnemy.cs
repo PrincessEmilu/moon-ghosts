@@ -77,6 +77,7 @@ public class MeleeEnemy : Enemy
         tempRotVec.y = 1.0f;
 
         transform.LookAt(tempRotVec);
+        transform.rotation = new Quaternion(0.0f, transform.rotation.y, 0.0f, 0.0f);
         Debug.DrawRay(transform.position, transform.forward, Color.green);
     }
 

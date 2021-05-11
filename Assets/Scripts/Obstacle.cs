@@ -9,7 +9,7 @@ public class Obstacle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        radius = 1.25f;
+        radius = 2.0f;
     }
 
     // Update is called once per frame
