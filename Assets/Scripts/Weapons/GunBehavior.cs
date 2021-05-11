@@ -86,17 +86,17 @@ public class GunBehavior : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (isReloading)
-        {
-            reloadTimer.Tick();
-            if (reloadTimer.CheckTime())
-            {
-                transform.Rotate(new Vector3(-45, 0, 0));
-                gunClip.RefillClip();
-                isReloading = false;
-                reloadTimer.Reset();
-            }
-        }
+        //if (isReloading)
+        //{
+        //    reloadTimer.Tick();
+        //    if (reloadTimer.CheckTime())
+        //    {
+        //        transform.Rotate(new Vector3(-45, 0, 0));
+        //        gunClip.RefillClip();
+        //        isReloading = false;
+        //        reloadTimer.Reset();
+        //    }
+        //}
 
         if (!isFireable)
         {
@@ -126,17 +126,17 @@ public class GunBehavior : MonoBehaviour
     /// <summary>
     /// Starts the reload timer. When the timer is finished, the reload will happen.
     /// </summary>
-    public void Reload()
-    {
-        if (!isReloading)
-        {
-            transform.Rotate(new Vector3(45, 0, 0));
-            isReloading = true;
+    //public void Reload()
+    //{
+    //    if (!isReloading)
+    //    {
+    //        transform.Rotate(new Vector3(45, 0, 0));
+    //        isReloading = true;
 
-            //soundManager.PlayReload();
-            Debug.Log("Sound is disabled");
-        }
-    }
+    //        //soundManager.PlayReload();
+    //        Debug.Log("Sound is disabled");
+    //    }
+    //}
 
     /// <summary>
     /// Handles spawning and applying velocity/targetting to the bullet
@@ -145,25 +145,25 @@ public class GunBehavior : MonoBehaviour
     {
         Debug.Log("Pew!");
         isFireable = false;
-        gunClip.UseBullet();
+        //gunClip.UseBullet();
 
         // TODO: Spawn a bullet, play animations, etc etc.
         Instantiate(bulletPrefab, gameObject.transform.position + transform.TransformDirection(muzzlePoint), playerCamTransform.rotation);
     }
 
-    public void OnGunSwitch()
-    {
-        if (!gameObject.activeInHierarchy)
-        {
-            switchTime = System.DateTime.Now; 
-        }
-        else
-        {
-            float secondsUsed = (float)(System.DateTime.Now - switchTime).TotalSeconds;
-        }
+    //public void OnGunSwitch()
+    //{
+    //    if (!gameObject.activeInHierarchy)
+    //    {
+    //        switchTime = System.DateTime.Now; 
+    //    }
+    //    else
+    //    {
+    //        float secondsUsed = (float)(System.DateTime.Now - switchTime).TotalSeconds;
+    //    }
 
-        soundManager.PlaySwitchWeapon();
+    //    soundManager.PlaySwitchWeapon();
 
-        gameObject.SetActive(!gameObject.activeInHierarchy);
-    }
+    //    gameObject.SetActive(!gameObject.activeInHierarchy);
+    //}
 }

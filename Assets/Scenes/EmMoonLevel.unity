@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00016357083, g: 0.83601236, b: 0.8360121, a: 1}
+  m_IndirectSpecularColor: {r: 0.00045284227, g: 0.00037062934, b: 0.00035165888, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4396,6 +4396,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 2224434958666620256, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+      propertyPath: isFullAuto
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224434958666620256, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7105385556317688049, guid: 920c75f6f35cc794b9476f75857afb40, type: 3}
     - target: {fileID: 4521209160879684431, guid: de4867057e7e97841a9e1fc0dae75861, type: 3}
       propertyPath: gunLoadout.Array.size
       value: 2
