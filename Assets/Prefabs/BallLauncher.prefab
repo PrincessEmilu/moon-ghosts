@@ -49,7 +49,7 @@ MonoBehaviour:
   secondsToReload: 3
   clipCapacity: 12
   muzzlePoint: {x: 0.044, y: -0.03, z: -2.33}
-  bulletPrefab: {fileID: 154025074267500344, guid: 5d099bf5e461d96469c2a8050db0cf21, type: 3}
+  bulletPrefab: {fileID: 7105385556317688049, guid: 920c75f6f35cc794b9476f75857afb40, type: 3}
   playerCamTransform: {fileID: 0}
   soundManager: {fileID: 0}
   shootEvent: 

@@ -71,7 +71,7 @@ public class GunController : MonoBehaviour
         // If not shooting, the player may instead want to reload the gun
         else if (Input.GetKeyDown(KeyCode.R))
         {
-            gunBehavior.Reload();
+            //gunBehavior.Reload();
         }
         // Switch Weapons
         else if (Input.mouseScrollDelta.magnitude != 0)
@@ -86,7 +86,7 @@ public class GunController : MonoBehaviour
 
             for (int i = 0; i < gunLoadout.Length; i++)
             {
-                gunLoadout[i].GetComponent<GunBehavior>().OnGunSwitch();
+                //gunLoadout[i].GetComponent<GunBehavior>().OnGunSwitch();
             }
         }
     }

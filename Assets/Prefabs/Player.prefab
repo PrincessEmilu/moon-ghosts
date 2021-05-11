@@ -310,6 +310,10 @@ PrefabInstance:
       value: BallLauncher
       objectReference: {fileID: 0}
     - target: {fileID: 6024731156044777994, guid: f3e9c8d3414522d4488d1740e7286a04, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 154025074267500344, guid: 5d099bf5e461d96469c2a8050db0cf21, type: 3}
+    - target: {fileID: 6024731156044777994, guid: f3e9c8d3414522d4488d1740e7286a04, type: 3}
       propertyPath: playerCamTransform
       value: 
       objectReference: {fileID: 2622957437588097868}
