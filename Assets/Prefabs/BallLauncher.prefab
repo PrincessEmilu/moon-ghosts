@@ -52,7 +52,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7105385556317688049, guid: 920c75f6f35cc794b9476f75857afb40, type: 3}
   playerCamTransform: {fileID: 0}
   soundManager: {fileID: 0}
-  shootEvent: 
+  shootEvent: event:/Player/Attack
 --- !u!1001 &7171911897576552489
 PrefabInstance:
   m_ObjectHideFlags: 0
