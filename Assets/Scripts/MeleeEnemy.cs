@@ -90,4 +90,13 @@ public class MeleeEnemy : Enemy
             rb.AddForce(tempVec * speed * 5);
         }
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            player.GetComponent<FPSController>().TakeDamage(1.0f);
+            Destroy(gameObject);
+        }
+    }
 }
