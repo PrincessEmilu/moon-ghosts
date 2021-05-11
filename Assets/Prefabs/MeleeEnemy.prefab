@@ -133,6 +133,7 @@ MonoBehaviour:
   wanderDiff: 0
   maxSpeed: 0
   speed: 0
+  dieEvent: event:/Enemy/Die
   sightRange: 0
   currentState: 0
   obstacles: []

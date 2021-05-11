@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour, IDamageable<float>
     public float maxSpeed;
     public float speed;
 
+    [FMODUnity.EventRef]
+    public string dieEvent;
+
     // Start is called before the first frame update
     protected void Start()
     {
@@ -32,6 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>
 
         if(health <= 0)
         {
+            FMODUnity.RuntimeManager.PlayOneShot(dieEvent, transform.position);
             Destroy(gameObject);
         }
     }

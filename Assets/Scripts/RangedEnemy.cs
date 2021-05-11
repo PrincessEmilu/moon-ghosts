@@ -13,6 +13,9 @@ public class RangedEnemy : Enemy
 
     public int currentBound;
 
+    [FMODUnity.EventRef]
+    public string attackEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,7 @@ public class RangedEnemy : Enemy
             {
                 cdTimer = 0.0f;
                 Fire(player.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(attackEvent, transform.position);
                 canFire = false;
             }
         }

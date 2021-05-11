@@ -147,6 +147,9 @@ public class GunBehavior : MonoBehaviour
         isFireable = false;
         //gunClip.UseBullet();
 
+        // Play Sound
+        FMODUnity.RuntimeManager.PlayOneShot(shootEvent, transform.position);
+
         // TODO: Spawn a bullet, play animations, etc etc.
         Instantiate(bulletPrefab, gameObject.transform.position + transform.TransformDirection(muzzlePoint), playerCamTransform.rotation);
     }
