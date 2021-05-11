@@ -5037,9 +5037,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68cc18e19d15ad14b9ded0343ac7a7ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 1
+  baseDamage: 4
   maximumLifetime: 10
-  projectileSpeed: 50
+  projectileSpeed: 100
 --- !u!136 &777609490176316881
 CapsuleCollider:
   m_ObjectHideFlags: 0

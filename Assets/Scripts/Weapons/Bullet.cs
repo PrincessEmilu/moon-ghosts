@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] float baseDamage;
     [SerializeField] float maximumLifetime;
-    [SerializeField] float projectileSpeed = 45f;
+    [SerializeField] float projectileSpeed = 100f;
 
     private Timer cullTimer;
 
