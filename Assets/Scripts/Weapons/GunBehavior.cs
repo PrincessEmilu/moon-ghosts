@@ -118,8 +118,6 @@ public class GunBehavior : MonoBehaviour
         {
             Shoot();
 
-            QualtricsDataContainer.AddWeaponShotFired(name);
-
             //soundManager.PlayShoot(shootEvent); 
             Debug.Log("sound disabled");
         }
@@ -162,8 +160,6 @@ public class GunBehavior : MonoBehaviour
         else
         {
             float secondsUsed = (float)(System.DateTime.Now - switchTime).TotalSeconds;
-
-            QualtricsDataContainer.AddWeaponUseTime(name, secondsUsed);
         }
 
         soundManager.PlaySwitchWeapon();
