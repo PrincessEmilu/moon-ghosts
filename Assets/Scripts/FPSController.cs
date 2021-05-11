@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class FPSController : MonoBehaviour, IDamageable<float>
 {
@@ -273,9 +274,11 @@ public class FPSController : MonoBehaviour, IDamageable<float>
         health -= damageTaken;
         if(health <= 0 )
         {
-            transform.position = new Vector3(32.0f, 1.0f, 31.0f);
+            // transform.position = new Vector3(32.0f, 1.0f, 31.0f);
             health = 3.0f;
             // end screen here
+            // 4 is the int for try again screen
+            SceneManager.LoadScene(4);
         }
     }
 }
